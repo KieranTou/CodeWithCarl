@@ -31,16 +31,13 @@ func (list *SingleLinkedList) reverseList(head *SingleNode) *SingleNode {
 
 // 递归法
 func (list *SingleLinkedList) reverseList1(head *SingleNode) *SingleNode {
-	var temp *SingleNode
-	cur := head
-	var pre *SingleNode = nil
-
-	for cur != nil {
-		temp = cur.Next
-		cur.Next = pre
-
-		pre = cur
-		cur = temp
+	return help(nil, head)
+}
+func help(pre, head *SingleNode) *SingleNode {
+	if head == nil {
+		return pre
 	}
-	return pre
+	next := head.Next
+	head.Next = pre
+	return help(head, next)
 }
